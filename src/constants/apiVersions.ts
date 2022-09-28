@@ -1,7 +1,7 @@
 const API_VERSIONS = {
   product: "v1",
   order: "",
-  import: "",
+  import: "v1",
   bff: "",
   cart: "",
 };
