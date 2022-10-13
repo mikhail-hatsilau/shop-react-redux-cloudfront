@@ -66,3 +66,21 @@ export function useDeleteAvailableProduct() {
     })
   );
 }
+
+export function useUploadProduct() {
+  return useMutation(async (file: File) => {
+    const signedUrlResponse = await axios.get<string>(
+      `${API_PATHS.import}/${API_VERSIONS.product}/import`,
+      {
+        headers: {
+          Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
+        },
+        params: {
+          fileName: encodeURIComponent(file.name),
+        },
+      }
+    );
+    const uploadResponse = await axios.put(signedUrlResponse.data, file);
+    return uploadResponse.data;
+  });
+}
