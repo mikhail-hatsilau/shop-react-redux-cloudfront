@@ -4,6 +4,7 @@ import { AvailableProduct } from "~/models/Product";
 import { useQuery, useQueryClient, useMutation } from "react-query";
 import React from "react";
 import API_VERSIONS from "~/constants/apiVersions";
+import { AUTHORIZATION_TOKEN } from "~/constants/login";
 
 export function useAvailableProducts() {
   return useQuery<AvailableProduct[], AxiosError>(
@@ -68,12 +69,15 @@ export function useDeleteAvailableProduct() {
 }
 
 export function useUploadProduct() {
-  return useMutation(async (file: File) => {
+  return useMutation<string, AxiosError, File>(async (file: File) => {
+    const authorizationToken = localStorage.getItem(AUTHORIZATION_TOKEN);
     const signedUrlResponse = await axios.get<string>(
       `${API_PATHS.import}/${API_VERSIONS.product}/import`,
       {
         headers: {
-          Authorization: `Basic ${localStorage.getItem("authorization_token")}`,
+          ...(authorizationToken
+            ? { Authorization: `Basic ${authorizationToken}` }
+            : {}),
         },
         params: {
           fileName: encodeURIComponent(file.name),
