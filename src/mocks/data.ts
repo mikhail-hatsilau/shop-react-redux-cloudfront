@@ -4,25 +4,13 @@ import { Order } from "~/models/Order";
 
 export const cart: CartItem[] = [
   {
-    product: {
-      description: "Short Product Description1",
-      id: "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
-      price: 24,
-      title: "ProductOne",
-      categoryId: "fbf7b857-c7d5-492d-a1aa-ff835effa02e",
-      images: [],
-    },
+    id: "123",
+    productId: "123",
     count: 2,
   },
   {
-    product: {
-      description: "Short Product Description7",
-      id: "7567ec4b-b10c-45c5-9345-fc73c48a80a1",
-      price: 15,
-      title: "ProductName",
-      categoryId: "fbf7b857-c7d5-492d-a1aa-ff835effa02e",
-      images: [],
-    },
+    id: "123321",
+    productId: "12345",
     count: 5,
   },
 ];
@@ -37,8 +25,16 @@ export const orders: Order[] = [
       comment: "",
     },
     items: [
-      { productId: "7567ec4b-b10c-48c5-9345-fc73c48a80aa", count: 2 },
-      { productId: "7567ec4b-b10c-45c5-9345-fc73c48a80a1", count: 5 },
+      {
+        cartItemId: "123",
+        productId: "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
+        count: 2,
+      },
+      {
+        cartItemId: "123",
+        productId: "7567ec4b-b10c-45c5-9345-fc73c48a80a1",
+        count: 5,
+      },
     ],
     statusHistory: [
       { status: OrderStatus.Open, timestamp: Date.now(), comment: "New order" },
@@ -52,7 +48,13 @@ export const orders: Order[] = [
       lastName: "Doe",
       comment: "Ship fast!",
     },
-    items: [{ productId: "7567ec4b-b10c-48c5-9345-fc73c48a80aa", count: 3 }],
+    items: [
+      {
+        cartItemId: "123",
+        productId: "7567ec4b-b10c-48c5-9345-fc73c48a80aa",
+        count: 3,
+      },
+    ],
     statusHistory: [
       {
         status: OrderStatus.Sent,
