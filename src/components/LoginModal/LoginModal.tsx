@@ -7,7 +7,7 @@ import { useLogin } from "~/hooks/useLogin";
 interface LoginModalProps {
   onLogin: () => void;
   open: boolean;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function LoginModal(props: LoginModalProps) {
@@ -16,7 +16,7 @@ export default function LoginModal(props: LoginModalProps) {
 
   const handleSubmit = (creds: LoginFormFields) => {
     login(creds);
-    onClose();
+    onClose?.();
     onLogin();
   };
 
